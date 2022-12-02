@@ -1,6 +1,6 @@
 <template>
   <div class="container text-center" id="app"> <!--todo en un div  -->
-    <h1 class="text-center">{{bienvenida}}</h1> <!-- titulo -->
+    <h1 class="text-center titulo">{{bienvenida}}</h1> <!-- titulo -->
     <!-- componentes -->
     <div class="tablas">
       <EntregableTres :arraycompo="arraylomitos" :colorcompo="coloruno" :titulo="lomitos"/> <!-- le paso al componente sus props -->
@@ -96,6 +96,10 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+.titulo{
+  margin-bottom: 2%;
 }
 
 .tablas{
