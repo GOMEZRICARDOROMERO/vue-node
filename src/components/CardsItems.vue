@@ -10,22 +10,24 @@
                     <p class="text-center mt-2">$ {{skin.precio}}</p>
                     <button type="button" class="btn btn-outline-success" @click="agregarProductosAlCarrito(skin.titulo,skin.precio)">Comprar</button>
                 </div>  
-            </article>
+    </article>
   </section>
   <!-- componentes -->
-
+  <PurchasesCart :productosCarritocompo="productosCarrito"/>
   <!-- componentes -->
   </div>
 </template>
 
 <script>
 // imports de los componentes
-
+import PurchasesCart from "./PurchasesCart.vue";
 // imports de los componentes
 
 export default {
   name: "CardsItems",
   created() {
+  },components: {
+    PurchasesCart
   },
   data() {
     return {
@@ -43,6 +45,7 @@ export default {
         precio: precios
         }
       this.productosCarrito.push(newProd)//agrego el objeto al array
+      console.log(newProd,"agregado ");
     }
   },
 };
