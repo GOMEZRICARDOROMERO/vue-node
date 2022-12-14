@@ -25,7 +25,7 @@
           </div>
           
           <div>
-            <input class="formulario__boton formulario__input" type="reset" value="Cancelar"> <!-- resetea lo escrito -->
+            <!-- <input class="formulario__boton formulario__input" type="reset" value="Cancelar"> --> <!-- resetea lo escrito -->
             <input class="formulario__boton formulario__input" type="submit" value="Enviar"> <!-- PARA enviar submit, se deja en reset para que no cuelgue la pagina -->
           </div>
         </div>
