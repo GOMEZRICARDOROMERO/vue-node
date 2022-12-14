@@ -55,7 +55,8 @@ h1{
 }
 
 table{
-  margin-bottom: 5%;
+  width: 80%;
+  margin:5% auto;
 }
 
 </style>

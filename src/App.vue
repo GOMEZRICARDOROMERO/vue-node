@@ -1,5 +1,5 @@
 <template>
-  <div class="container text-center" id="app"> <!--todo en un div  -->
+  <div id="app"> <!--todo en un div  -->
     <h1 class="text-center titulo">{{bienvenida}}</h1> <!-- titulo -->
     <!-- componentes -->
     <FormularioEntregable/>
