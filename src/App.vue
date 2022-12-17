@@ -2,21 +2,21 @@
   <div id="app"> <!--todo en un div  -->
     <h1 class="text-center titulo">{{bienvenida}}</h1> <!-- titulo -->
     <!-- componentes -->
-    <FormularioEntregable/>
+
     <!-- componentes -->
   </div>
 </template>
 
 <script>
 // imports de los componentes
-import FormularioEntregable from './components/FormularioEntregable.vue'
+
 // imports de los componentes
 
 export default {
   name: 'App',
   components: {
     //nombre de los componenetes que se usan
-    FormularioEntregable
+
     //nombre de los componenetes que se usan
   },
   data() {
@@ -24,7 +24,7 @@ export default {
       //array de objeros 
 
       //variables de data
-      bienvenida: "Entregable #5 Formulario"
+      bienvenida: "Segunda Entrega Proyecto Final"
 
     }
   },
