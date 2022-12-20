@@ -3,9 +3,10 @@
   <div>
   <h1>Skins Disponinbles</h1>
   <section class="imagenes">
-    <article class="imagenes__card" v-for="(skin, index) in arrayskinscompo" :key="index"> 
+    <article class="imagenes__card" v-for="(skin, index) in arrayskins" :key="index"> 
                 <img class="imagenes__cuadro" :src="skin.imgurl" :alt="skin.titulo">
-                <div class="imagenes__textos text-center"> 
+                <div class="imagenes__textos text-center">
+                    <h6>ID: {{skin.id}}</h6>
                     <h2>{{skin.titulo}}</h2>
                     <p class="text-center mt-2">$ {{skin.precio}}</p>
                     <button type="button" class="btn btn-outline-success" @click="agregarProductosAlCarrito(skin.titulo,skin.precio)">Comprar</button>
@@ -19,23 +20,48 @@
 </template>
 
 <script>
-// imports de los componentes
-import PurchasesCart from "./PurchasesCart.vue";
-// imports de los componentes
+// imports 
+import PurchasesCart from "./PurchasesCart.vue"
+import axios from 'axios' //importo la libreria de axios
+// imports 
 
 export default {
   name: "CardsItems",
   created() {
-  },components: {
+/*     //traigo los datos desde mockapi con fetch
+    const URL ="https://639dfe161ec9c6657bb75ebf.mockapi.io/skins";
+    fetch(URL) //le paso la url
+            .then(response => response.json()) // traigo la respuesta y la convierte en formato de objeto
+            .then(data => { //los datos convertidos los llamo data 
+                this.arrayskins = data; // le paso a mi array los datos de data
+                console.log(this.arrayskins); // imprimo para comprobar
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+    //traigo los datos desde mockapi con fetch */
+    //traigo los datos desde mockapi con axios
+    const URL ="https://639dfe161ec9c6657bb75ebf.mockapi.io/skins";
+    axios.get(URL)
+        .then((response) => {
+          this.arrayskins = response.data;
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    //traigo los datos desde mockapi con axios
+  },
+  components: {
     PurchasesCart
   },
   data() {
     return {
-      productosCarrito:[]//array de objetos carrito vacio
+      productosCarrito:[],//array de objetos carrito vacio
+      arrayskins:[] // este array se llena con mockapi
     };
   },
   props: {
-    arrayskinscompo: Array
+  
   },
   methods: {
     agregarProductosAlCarrito(titulos,precios){
@@ -107,5 +133,9 @@ export default {
     margin: 3%;
     /* separo en todos los lados 1% */ 
   }
+
+h6{
+  font-size: 10px
+}
 
 </style>
