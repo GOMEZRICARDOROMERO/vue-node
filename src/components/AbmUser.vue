@@ -84,7 +84,7 @@
     <h1>Modificacion</h1>
     <section class="formulario">
         <form action="" id="formulario3" @submit.prevent="modificacion">
-            <div class="formulario__contenedor">
+            <div class="formulario__contenedor3">
               <div>
                 <label>ID:</label><!-- muestra la palabra antes del input -->
                 <input v-model.number="mid" class="formulario__input " type="number" placeholder="22"> <!-- son campos para escribir como nombre email etc -->
@@ -352,7 +352,7 @@ export default {
     /* relleno de 10px */
     width: 400px;
     /* ancho */
-    height: 380px;
+    height: 470px;
     /* alto */
     border-radius: 16px;
     /* borde redondo */

@@ -65,7 +65,7 @@ export default {
             this.abmuser = true
         },
         logout(){
-            this.$router.push('/');//redirigo al registro
+            this.$router.push('/');//redirigo al home
         }
     },
 };

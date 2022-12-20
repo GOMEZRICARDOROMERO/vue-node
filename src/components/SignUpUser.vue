@@ -77,6 +77,7 @@ export default {
         document.getElementById("formulario").reset();
         //this.usuario = "", this.password = "";
         Object.assign(this.$data, this.$options.data()); // esto borra todo incluyendo el array 
+        this.$router.push('/login');//redirigo al login
         }, 0);
         return true; // con true no entra a las demas validaciones
       }
