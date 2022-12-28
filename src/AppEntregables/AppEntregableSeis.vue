@@ -1,23 +1,19 @@
 <template>
-<div id="app"> <!--todo en un div  -->
-    <h1 class="text-center titulo">{{bienvenida}}</h1> <!-- titulo -->
-    <br> <br>
+  <div id="app">
+    <h1 class="text-center titulo">{{bienvenida}}</h1> <br><!-- titulo -->
     <div class="d-flex justify-content-around w-25 mx-auto ">
-      <router-link to="/falta">
-        <button type="button" class="btn btn-outline-primary">Alta</button>
+      <router-link to="/">
+        <button type="button" class="btn btn-outline-primary">Home</button>
       </router-link>
-      <router-link to="/fbaja">
-        <button type="button" class="btn btn-outline-success">Baja</button>
+      <router-link to="/login">
+        <button type="button" class="btn btn-outline-success">Login</button>
       </router-link>
-      <router-link to="/fmodi">
-        <button type="button" class="btn btn-outline-info">Modificacion</button>
+      <router-link to="/singup">
+        <button type="button" class="btn btn-outline-info">Sing up</button>
       </router-link>
     </div> <br> <br>
     <router-view/>
-    <!-- componentes -->
-
-    <!-- componentes -->
-</div>
+  </div>
 </template>
 
 <script>
@@ -37,7 +33,7 @@ data() {
       //array de objeros 
 
       //variables de data
-    bienvenida: "Entregable #7 Formulario + Vuex"
+    bienvenida: "Segunda Entrega Proyecto Final"
 
     }
 },
@@ -50,7 +46,6 @@ computed: {
 }
 </script>
 
-<!-- css -->
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -72,5 +67,4 @@ nav a {
 nav a.router-link-exact-active {
   color: #42b983;
 }
-
 </style>

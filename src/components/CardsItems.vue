@@ -9,7 +9,7 @@
                     <h6>ID: {{skin.id}}</h6>
                     <h2>{{skin.titulo}}</h2>
                     <p class="text-center mt-2">$ {{skin.precio}}</p>
-                    <button type="button" class="btn btn-outline-success" @click="agregarProductosAlCarrito(skin.titulo,skin.precio)">Comprar</button>
+                    <button type="button" class="btn btn-outline-success" @click="agregarProductosAlCarrito(skin.titulo,skin.precio)">Add 🛒</button>
                 </div>  
     </article>
   </section>
@@ -40,6 +40,8 @@ export default {
                 console.error('Error:', error);
             });
     //traigo los datos desde mockapi con fetch */
+    
+    
     //traigo los datos desde mockapi con axios
     const URL ="https://639dfe161ec9c6657bb75ebf.mockapi.io/skins";
     axios.get(URL)

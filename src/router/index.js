@@ -19,6 +19,21 @@ const routes = [
     path: '/singup',
     name: 'singup',
     component: () => import(/* webpackChunkName: "about" */ '../views/SingupView.vue')
+  },
+  {
+    path: '/falta',
+    name: 'falta',
+    component: () => import(/* webpackChunkName: "about" */ '../views/FaltaView.vue')
+  },
+  {
+    path: '/fbaja',
+    name: 'fbaja',
+    component: () => import(/* webpackChunkName: "about" */ '../views/FbajaView.vue')
+  },
+  {
+    path: '/fmodi',
+    name: 'fmodi',
+    component: () => import(/* webpackChunkName: "about" */ '../views/FmodView.vue')
   }
 ]
 
