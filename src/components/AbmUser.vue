@@ -1,26 +1,9 @@
+<!-- Formularios para el ABM de usuarios -->
 <template>
   <div>
-  <div class="tablas">
-  <h1>Usuarios registrados</h1> <!-- titulo para cada tabla -->
-  <table class="table table-sm table-primary" > <!-- vindeo el colorcompo cuyo valor viene de data y se pasa por parametro-->
-            <thead>
-                <tr>
-                    <th scope="col">Usuario</th> <!-- head coon variable local -->
-                    <th scope="col">Email</th>
-                    <th scope="col">Rol</th>
-                    <th scope="col">Id</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="(usu, index) in usuariosRegistrados" :key="index"> <!-- recorro el array que llega en props y saco cada pet -->
-                    <td>{{usu.usuario}}</td>
-                    <td>{{usu.email}}</td>
-                    <td>{{usu.rol}}</td>
-                    <td>{{usu.id}}</td>
-                </tr>
-            </tbody>
-  </table>
-  </div>
+  <br>
+  <UsuariosRegistrados/>
+  <br>
   <br><br>
   <h1>Alta</h1>
     <section class="formulario">
@@ -132,12 +115,17 @@
 </template>
 
 <script>
+import UsuariosRegistrados from "./UsuariosRegistrados.vue"
 import axios from 'axios'
+import {mapActions} from 'vuex'
 
 export default {
   name: "AbmUser",
   created() {
-    this.renderizar()
+    
+  },
+  components:{
+    UsuariosRegistrados
   },
   data() {
     return {
@@ -160,6 +148,7 @@ export default {
 
   },
   methods: {
+    ...mapActions(['getApi']),
     baja(){
       if (this.bid > 0) {
         const URLD ="https://639dfe161ec9c6657bb75ebf.mockapi.io/usuarios/"+this.bid;
@@ -172,8 +161,8 @@ export default {
         alert("Usuario/a borrado/a ")
         }, 0);
         setTimeout(() => {
-          this.renderizar()
-        }, 1500);
+          this.getApi();
+        }, 1000);
         return true;
       }
       if (this.bid <=0) {
@@ -232,8 +221,8 @@ export default {
       //le indico la url y el objeto que se va postear y listo
       axios.put(URLM,modSkin)
       setTimeout(() => {
-        this.renderizar()
-      }, 1500);
+        this.getApi();
+      }, 1000);
     },
     singup(){
       //validaciones
@@ -284,8 +273,8 @@ export default {
       //le indico la url y el objeto que se va postear y listo
       axios.post(URLUP,nuevoUser)
       setTimeout(() => {
-        this.renderizar()
-      }, 1500);
+        this.getApi();
+      }, 1000);
     },
     renderizar(){
       const URLR ="https://639dfe161ec9c6657bb75ebf.mockapi.io/usuarios";

@@ -1,7 +1,7 @@
 <!--Loggin usuarios  -->
 <template>
   <div class="container">
-    <div v-if="habilitarlogin"> <!-- div de login -->
+    <div v-if="!$store.getters.obtenerUsuarioLog"> <!-- div de login -->
       <h1>Inicia Sesion</h1> <br>
         <section class="formulario"> <!-- form -->
             <form action="" id="formulario" @submit.prevent="login">
@@ -23,8 +23,8 @@
             </form>
         </section>
     </div> <!-- div de login -->
-    <div v-if="!habilitarlogin"> <!-- div items -->
-      <UserControl :usuloginprops="usulogin" :esadminprops="esadmin" />
+    <div v-if="$store.getters.obtenerUsuarioLog"> <!-- div items -->
+      <UserControl/>
     </div> <!-- div items -->
   </div> 
 </template>
@@ -33,6 +33,8 @@
 // imports de los componentes
 import UserControl from '@/components/UserControl.vue'
 import axios from 'axios'
+import {mapMutations} from 'vuex'
+
 
 export default {
   name: "LoginUser",
@@ -65,6 +67,7 @@ export default {
 
   },
   methods: {
+    ...mapMutations(['logearUsu','esAdmin']),
     login(){
       //validaciones
       if (this.usuario && this.password) {
@@ -101,10 +104,16 @@ export default {
           console.log("es admin")
           this.esadmin = true
           this.usulogin = this.usuario + ", tu rol es: Admin 😎"
+          //store
+          this.esAdmin(this.esadmin);
+          this.logearUsu(this.usulogin);
         }else{
           this.esadmin = false
           console.log("no es admin")
           this.usulogin = this.usuario + ", tu rol es: User 😊"
+          //store
+          this.esAdmin(this.esadmin);
+          this.logearUsu(this.usulogin);
         }
       }
       else{

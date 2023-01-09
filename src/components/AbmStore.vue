@@ -1,5 +1,8 @@
 <template>
   <div>
+  <br>
+  <SkinsRegistradas/>
+  <br>
   <h1>Alta</h1>
     <section class="formulario">
         <form action="" id="formulario" @submit.prevent="alta">
@@ -80,12 +83,17 @@
 </template>
 
 <script>
+import SkinsRegistradas from "./SkinsRegistradas.vue"
 import axios from 'axios'
+import {mapActions} from 'vuex'
 
 export default {
   name: "AbmStore",
   created() {
 
+  },
+  components:{
+    SkinsRegistradas
   },
   data() {
     return {
@@ -103,6 +111,7 @@ export default {
 
   },
   methods: {
+    ...mapActions(['getApiDos']),
     alta(){
       //validaciones
       if (this.atitulo && this.aimgurl  && this.aprecio >0) {
@@ -141,6 +150,9 @@ export default {
       const URL ="https://639dfe161ec9c6657bb75ebf.mockapi.io/skins";
       //le indico la url y el objeto que se va postear y listo
       axios.post(URL,nuevoSkin)
+      setTimeout(() => {
+        this.getApiDos();
+      }, 1000);
     },
     baja(){
       if (this.bid > 0) {
@@ -153,6 +165,9 @@ export default {
         console.log(respuesta)
         alert("Skin borrada ")
         }, 0);
+        setTimeout(() => {
+        this.getApiDos();
+      }, 1000);
         return true;
       }
       if (this.bid <=0) {
@@ -200,6 +215,9 @@ export default {
       const URLM ="https://639dfe161ec9c6657bb75ebf.mockapi.io/skins/"+this.mid;
       //le indico la url y el objeto que se va postear y listo
       axios.put(URLM,modSkin)
+      setTimeout(() => {
+        this.getApiDos();
+      }, 1000);
     }
   },
 };

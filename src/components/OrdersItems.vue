@@ -1,23 +1,23 @@
-<!-- Tabla que muestra los usuarios -->
+<!-- Tabla que muestra las ordenes -->
 <template>
   <div>
   <div class="tablas">
-  <h1>Usuarios registrados</h1> <!-- titulo para cada tabla -->
+  <h1>Ordenes registradas</h1> <!-- titulo para cada tabla -->
   <table class="table table-sm table-primary" > <!-- vindeo el colorcompo cuyo valor viene de data y se pasa por parametro-->
             <thead>
                 <tr>
+                    <th scope="col">ID</th>
                     <th scope="col">Usuario</th> <!-- head coon variable local -->
-                    <th scope="col">Email</th>
-                    <th scope="col">Rol</th>
-                    <th scope="col">Id</th>
+                    <th scope="col">Skins</th>
+                    <th scope="col">Total</th>
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(usu, index) in obtenerUsuarios" :key="index"> <!-- recorro el array que llega en props y saco cada pet -->
-                    <td>{{usu.usuario}}</td>
-                    <td>{{usu.email}}</td>
-                    <td>{{usu.rol}}</td>
-                    <td>{{usu.id}}</td>
+                <tr v-for="(ord, index) in obtenerOrdenes" :key="index"> <!-- recorro el array que llega en props y saco cada pet -->
+                    <td>{{ord.id}}</td>
+                    <td>{{ord.usuario}}</td>
+                    <td>{{ord.skins}}</td>
+                    <td>$ {{ord.precio}}</td>
                 </tr>
             </tbody>
   </table>
@@ -29,9 +29,9 @@
 import {mapActions, mapGetters} from 'vuex'
 
 export default {
-  name: "UsuariosRegistrados",
+  name: "OrdersItems",
   created() {
-    this.getApi()
+    this.getApiTres()
   },
   data() {
     return {
@@ -42,10 +42,10 @@ export default {
     
   },
   computed: {
-    ...mapGetters(['obtenerUsuarios']),
+    ...mapGetters(['obtenerOrdenes']),
   },
   methods: {
-    ...mapActions(['getApi']),
+    ...mapActions(['getApiTres']),
     
   },
 };
@@ -56,7 +56,7 @@ export default {
     display: flex;
     flex-direction: column;
     height: 100%;
-    width: 30%;
+    width: 80%;
     margin: auto;
 }
 </style>

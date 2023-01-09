@@ -14,15 +14,16 @@
     </article>
   </section>
   <!-- componentes -->
-  <PurchasesCart :productosCarritocompo="productosCarrito"/>
+
   <!-- componentes -->
   </div>
 </template>
 
 <script>
 // imports 
-import PurchasesCart from "./PurchasesCart.vue"
+
 import axios from 'axios' //importo la libreria de axios
+import {mapMutations} from 'vuex'
 // imports 
 
 export default {
@@ -54,7 +55,7 @@ export default {
     //traigo los datos desde mockapi con axios
   },
   components: {
-    PurchasesCart
+
   },
   data() {
     return {
@@ -66,14 +67,17 @@ export default {
   
   },
   methods: {
+    ...mapMutations(['carritoPush']),
     agregarProductosAlCarrito(titulos,precios){
       //crea un objeto literal con los datos
       const newProd = {
         titulo: titulos,
         precio: precios
         }
-      this.productosCarrito.push(newProd)//agrego el objeto al array
+      //store
+      this.carritoPush(newProd)
       console.log(newProd,"agregado ");
+      alert("Skin "+newProd.titulo+" Agregada")
     }
   },
 };

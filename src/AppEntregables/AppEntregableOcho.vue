@@ -1,19 +1,23 @@
 <template>
-  <div id="app">
-    <h1 class="text-center titulo">{{bienvenida}}</h1> <br><!-- titulo -->
-    <div v-if="!$store.getters.obtenerUsuarioLog" class="d-flex justify-content-around w-25 mx-auto ">
-      <router-link to="/">
-        <button type="button" class="btn btn-outline-primary">Home</button>
+<div id="app"> <!--todo en un div  -->
+    <h1 class="text-center titulo">{{bienvenida}}</h1> <!-- titulo -->
+    <br> <br>
+    <div class="d-flex justify-content-around w-25 mx-auto ">
+      <router-link to="/falta">
+        <button type="button" class="btn btn-outline-primary">Alta</button>
       </router-link>
-      <router-link to="/login">
-        <button type="button" class="btn btn-outline-success">Login</button>
+      <router-link to="/fbaja">
+        <button type="button" class="btn btn-outline-success">Baja</button>
       </router-link>
-      <router-link to="/singup">
-        <button type="button" class="btn btn-outline-info">Sing up</button>
+      <router-link to="/fmodi">
+        <button type="button" class="btn btn-outline-info">Modificacion</button>
       </router-link>
     </div> <br> <br>
     <router-view/>
-  </div>
+    <!-- componentes -->
+
+    <!-- componentes -->
+</div>
 </template>
 
 <script>
@@ -33,7 +37,7 @@ data() {
       //array de objeros 
 
       //variables de data
-    bienvenida: "Tercera Entrega Proyecto Final"
+    bienvenida: "Entregable #7 Formulario + Vuex"
 
     }
 },
@@ -46,6 +50,7 @@ computed: {
 }
 </script>
 
+<!-- css -->
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -67,4 +72,5 @@ nav a {
 nav a.router-link-exact-active {
   color: #42b983;
 }
+
 </style>
