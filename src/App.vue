@@ -33,7 +33,7 @@ data() {
       //array de objeros 
 
       //variables de data
-    bienvenida: "Tercera Entrega Proyecto Final"
+    bienvenida: "Entrega Proyecto Final"
 
     }
 },

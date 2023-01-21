@@ -2,14 +2,27 @@
 <template>
   <div>
   <h1>Skins Disponinbles</h1>
-  <section class="imagenes">
+  <section v-if="cards" class="imagenes">
     <article class="imagenes__card" v-for="(skin, index) in arrayskins" :key="index"> 
                 <img class="imagenes__cuadro" :src="skin.imgurl" :alt="skin.titulo">
                 <div class="imagenes__textos text-center">
                     <h6>ID: {{skin.id}}</h6>
                     <h2>{{skin.titulo}}</h2>
                     <p class="text-center mt-2">$ {{skin.precio}}</p>
-                    <button type="button" class="btn btn-outline-success" @click="agregarProductosAlCarrito(skin.titulo,skin.precio)">Add 🛒</button>
+                    <div class="div__button">
+                      <button type="button" class="btn btn-outline-success" @click="agregarProductosAlCarrito(skin.titulo,skin.precio,skin.id)">Add 🛒</button>
+                      <button type="button" class="redondo btn btn-outline-primary" @click="info(skin.titulo,skin.imgurl,skin.info)">ℹ️</button>
+                    </div>
+                </div>  
+    </article>
+  </section>
+  <section v-if="botoninfo" class="imagenes">
+    <article class="imagenes__card2"> 
+                <img class="imagenes__cuadro2" :src="urlskin" :alt="tituloskin">
+                <div class="imagenes__textos2 text-center">
+                    <h2>{{tituloskin}}</h2>
+                    <p class="text-center mt-2">{{infoskin}}</p>
+                      <button type="button" class="btn btn-outline-success" @click="Volver()">Volver</button>
                 </div>  
     </article>
   </section>
@@ -60,7 +73,12 @@ export default {
   data() {
     return {
       productosCarrito:[],//array de objetos carrito vacio
-      arrayskins:[] // este array se llena con mockapi
+      arrayskins:[], // este array se llena con mockapi
+      tituloskin: "",
+      infoskin: "",
+      urlskin:"",
+      botoninfo: false,
+      cards: true
     };
   },
   props: {
@@ -68,16 +86,32 @@ export default {
   },
   methods: {
     ...mapMutations(['carritoPush']),
-    agregarProductosAlCarrito(titulos,precios){
+    agregarProductosAlCarrito(titulos,precios,id){
       //crea un objeto literal con los datos
       const newProd = {
         titulo: titulos,
-        precio: precios
+        precio: precios,
+        id: id
         }
       //store
       this.carritoPush(newProd)
       console.log(newProd,"agregado ");
       alert("Skin "+newProd.titulo+" Agregada")
+    },
+    info(titulo,imgurl,info){
+      this.cards = false
+      this.botoninfo= true
+      this.tituloskin = titulo
+      this.urlskin = imgurl
+      this.infoskin = info
+      
+    },
+    Volver(){
+      this.cards = true
+      this.botoninfo= false
+      this.tituloskin = ""
+      this.urlskin = ""
+      this.infoskin = ""
     }
   },
 };
@@ -143,5 +177,61 @@ export default {
 h6{
   font-size: 10px
 }
+
+.div__button{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+
+.redondo{
+  width: 35px;
+  height:35px;
+  border-radius: 50%;
+}
+
+
+.imagenes__card2 {
+    /* es el diseño de la tarjeta */
+    display: flex;
+    /* paso todos los articulos a flex */
+    flex-direction: column;
+    /* los paso a vertical */
+    width: 800px;
+    /* ancho */
+    height: 710px;
+    /* alto */
+    border-radius: 16px;
+    /* borde redondo */
+    border: 3px solid #1d1d1b;
+    /* borde de color */
+    margin: 1%; 
+  }
+
+.imagenes__cuadro2 {
+    /* es el tamaño que se va usar para la imagen */
+    width: 100%;
+    /* ocupa el 100% de ancho */
+    height: 480px;
+    /* 250px de alto */
+    border-top-left-radius: 13px 13px;
+    /* hago redondo el borde arriba izquierda para coincidir con el de article */
+    border-top-right-radius: 13px 13px;
+    /* hago redondo el borde arriba derecha para coincidir con el de article */ 
+  }
+
+.imagenes__textos2 {
+    /* son los textos dentro de la tarjeta */
+    text-align: justify;
+    /* centro el texto */
+    line-height: 1.2;
+    /* separo los renglones */
+    margin: 3%;
+    /* separo en todos los lados 1% */ 
+  }
 
 </style>

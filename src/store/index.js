@@ -61,6 +61,9 @@ export default new Vuex.Store({
     cargarOrdenes(state, ordenesMockapi){
       state.ordenesDeCompra = ordenesMockapi;
     },
+    modificarCarrito(state,newCarrito){
+      state.carrito = newCarrito;
+    }
   },
   actions: {
     // consultan el backend (mockappi) y se lanzan los commits para llamar las mutaciones

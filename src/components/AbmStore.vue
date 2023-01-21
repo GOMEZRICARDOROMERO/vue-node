@@ -23,6 +23,11 @@
               </div>
               
               <div>
+                <label>Información:</label>
+                <textarea v-model="ainfo" class="formulario__texarea " rows="5" cols="5" placeholder="Información"></textarea><!-- rows filas cols columnas -->
+              </div>
+              
+              <div>
                 <input class="formulario__boton formulario__input btn btn-secondary" type="reset" value="Cancelar"> <!-- resetea lo escrito -->
                 <input class="formulario__boton formulario__input btn btn-success" type="submit" value="Finalizar"> <!-- PARA enviar submit, se deja en reset para que no cuelgue la pagina -->
               </div>
@@ -72,6 +77,11 @@
               </div>
               
               <div>
+                <label>Información:</label>
+                <textarea v-model="minfo" class="formulario__texarea " rows="5" cols="5" placeholder="Información"></textarea><!-- rows filas cols columnas -->
+              </div>
+              
+              <div>
                 <input class="formulario__boton formulario__input btn btn-secondary" type="reset" value="Cancelar"> <!-- resetea lo escrito -->
                 <input class="formulario__boton formulario__input btn btn-success" type="submit" value="Finalizar"> <!-- PARA enviar submit, se deja en reset para que no cuelgue la pagina -->
               </div>
@@ -101,10 +111,12 @@ export default {
       mtitulo: "",
       mimgurl: "",
       mprecio: "",
+      minfo: "",
       bid: "",
       atitulo: "",
       aimgurl: "",
-      aprecio: ""
+      aprecio: "",
+      ainfo: ""
     };
   },
   props: {
@@ -114,7 +126,7 @@ export default {
     ...mapActions(['getApiDos']),
     alta(){
       //validaciones
-      if (this.atitulo && this.aimgurl  && this.aprecio >0) {
+      if (this.atitulo && this.aimgurl  && this.aprecio >0 && this.ainfo) {
         alert("Skin agregada")
         //llamo al metodo que agrega los usuarios a mockapi con axios
         this.axiospost()
@@ -125,7 +137,7 @@ export default {
         }, 0);
         return true; // con true no entra a las demas validaciones
       }
-      if (!this.atitulo && !this.aimgurl  && this.aprecio <= 0) {
+      if (!this.atitulo && !this.aimgurl  && this.aprecio <= 0 && !this.ainfo) {
         alert("Error faltan todos los campos")
         return true;
       }
@@ -138,13 +150,17 @@ export default {
       if (this.aprecio <= 0) {
         alert("Error el precio debe ser mayor a 0")
       }
+      if (!this.ainfo) {
+        alert("Error falta informacion")
+      }
     },
     axiospost(){
       //creo el objeto a enviar
       const nuevoSkin={
         titulo: this.atitulo,
         imgurl: this.aimgurl,
-        precio: this.aprecio
+        precio: this.aprecio,
+        info: this.ainfo
       }
       //url a la cual enviar
       const URL ="https://639dfe161ec9c6657bb75ebf.mockapi.io/skins";
@@ -176,7 +192,7 @@ export default {
     },
     modificacion(){
       //validaciones
-      if (this.mid && this.mtitulo && this.mimgurl &&this.mprecio >0) {
+      if (this.mid && this.mtitulo && this.mimgurl && this.mprecio >0 && this.minfo) {
         alert("Skin modificada")
         //llamo al metodo que agrega los usuarios a mockapi con axios
         this.axiosput()
@@ -187,7 +203,7 @@ export default {
         }, 0);
         return true; // con true no entra a las demas validaciones
       }
-      if (this.mid <=0 && !this.mtitulo && !this.mimgurl  && this.mprecio <= 0) {
+      if (this.mid <=0 && !this.mtitulo && !this.mimgurl  && this.mprecio <= 0 && !this.minfo) {
         alert("Error faltan todos los campos")
         return true;
       }
@@ -203,13 +219,17 @@ export default {
       if (this.mprecio <=0) {
         alert("Error el precio debe ser mayor a 0")
       }
+      if (!this.minfol) {
+        alert("Error falta informarcion")
+      }
     },
     axiosput(){
       //creo el objeto a enviar
       const modSkin={
         titulo: this.mtitulo,
         imgurl: this.mimgurl,
-        precio: this.mprecio
+        precio: this.mprecio,
+        info: this.minfo
       }
       //url a la cual enviar
       const URLM ="https://639dfe161ec9c6657bb75ebf.mockapi.io/skins/"+this.mid;
@@ -238,7 +258,7 @@ export default {
     /* relleno de 10px */
     width: 400px;
     /* ancho */
-    height: 320px;
+    height: 520px;
     /* alto */
     border-radius: 16px;
     /* borde redondo */
@@ -274,7 +294,7 @@ export default {
     /* relleno de 10px */
     width: 400px;
     /* ancho */
-    height: 350px;
+    height: 520px;
     /* alto */
     border-radius: 16px;
     /* borde redondo */
@@ -313,4 +333,9 @@ export default {
     /* hago escala a 1.10 de su tamaño original */
     transition: all 0.1s; 
   }
+
+.formulario__texarea{
+  resize: none;
+  width: 100%
+}
 </style>

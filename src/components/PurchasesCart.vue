@@ -6,15 +6,18 @@
                 <tr>
                     <th scope="col">{{nombre}}</th> <!-- head coon variable local -->
                     <th scope="col">{{precio}}</th>
+                    <th scope="col">Borrar</th>
                 </tr>
             </thead>
             <tbody>
                 <tr v-for="(item, index) in obtenerCarrito" :key="index"> <!-- recorro el array que llega en props y saco cada pet -->
                     <td>{{item.titulo}}</td>
                     <td>$ {{item.precio}}</td>
+                    <td><button type="button" class="redondo btn btn-dark" @click="quitarSkin(item.id)">🗑️</button></td>
                 </tr>
                 <tr>
                     <td>TOTAL</td>
+                    <td></td>
                     <td>$ {{traerTotal(precioT)}}</td>
                 </tr>
             </tbody>
@@ -22,7 +25,7 @@
         <div class="div__button">
                 <button  id="bcarrito" type="button" class="btn btn-primary btn-lg" @click="limpiar()">Limpiar</button>
                 <button  id="pagar" type="button" class="btn btn btn btn-success btn-lg " @click="pagar()"> Pagar </button>
-            </div>
+        </div>
   </div>
 </template>
 
@@ -43,7 +46,8 @@ export default {
       precio: "Precio",
       precioT: 0,
       aVacio: [],
-      x: " "
+      x: " ",
+      copiaArray:[]
     };
   },
   props: {
@@ -54,7 +58,7 @@ export default {
   },
   methods: {
     ...mapActions(['getApiTres']),
-    ...mapMutations(['limpiarCarrito']),
+    ...mapMutations(['limpiarCarrito','modificarCarrito']),
     traerTotal(num){
       for (let index = 0; index < this.obtenerCarrito.length; index++) {
         const element = this.obtenerCarrito[index];
@@ -93,7 +97,13 @@ export default {
       }, 1000);
       alert("Gracias por comprar")
       }
-    }
+    },
+    quitarSkin(id){
+    let idp = parseInt(id)
+    this.copiaArray = this.obtenerCarrito.filter((skin) => skin.id !==idp) //busco el id en el array y hago una copia sin el objeto
+    this.modificarCarrito(this.copiaArray) //igualo el carrito
+    this.copiaArray = this.aVacio
+    },
   },
 };
 </script>
