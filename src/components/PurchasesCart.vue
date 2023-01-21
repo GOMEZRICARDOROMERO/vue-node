@@ -83,6 +83,7 @@ export default {
         usuario: usuariord.split(",")[0],
         skins: this.x.slice(0, -2),//.slice(0, -2) para quitar el espacio y la , al final
         precio: this.traerTotal(this.precioT),
+        fecha: new Date().toLocaleString()
       }
       if (skinsord === 0) {
         alert("Error debe agregar productos")
