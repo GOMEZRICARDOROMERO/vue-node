@@ -25,7 +25,7 @@
                 <input v-model="cpassword" class="formulario__input " type="password" placeholder="1234"> 
               </div>
               
-              <div>
+              <!-- <div>
                 <h5>Rol de usuario</h5>
               </div>
               <div>
@@ -33,7 +33,7 @@
                   <label>Admin &nbsp;</label>
                   <input v-model="rol" type="radio" class="form-check-input" value="user">
                   <label>User </label>
-              </div>
+              </div> -->
               
               <div>
                 <input class="formulario__boton formulario__input btn btn-secondary" type="reset" value="Cancelar"> <!-- resetea lo escrito -->
@@ -60,7 +60,7 @@ export default {
       email:"",
       password:"",
       cpassword:"",
-      rol:""
+      rol:"user"//dejar en blanco y descomentar la linea 28 a 36 para poder seleccionar le rol
     };
   },
   props: {
